@@ -13,3 +13,7 @@
     width: 90vw;
     max-width: 480px;
 }
+
+.login-fields > div {
+    margin-bottom: 20px;
+}

@@ -9,12 +9,19 @@ export default function Signup(){
     async function userSignUp() {
         const result = await fetch('http://localhost:1221/api/signup', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 email, password
             })
         }).then((t) => t.json())
 
         console.log(result)
+
+        if(result.status === 'ok'){
+            alert("Your signup is successful.");
+        } else alert(result.error);
     }
 
     return (
@@ -27,7 +34,7 @@ export default function Signup(){
                     label="Email" 
                     variant="outlined"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setEmail(e.target.value)}
                     />
                 <TextField 
                     fullWidth 
@@ -35,7 +42,7 @@ export default function Signup(){
                     label="Password" 
                     variant="outlined"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setPassword(e.target.value)}
                     />
                 <Button 
                     color="primary" 
