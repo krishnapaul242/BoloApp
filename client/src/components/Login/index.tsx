@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import './Style.css';
+import {apiCall} from '../../utility';
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     async function userLogin() {
-        const result = await fetch('http://localhost:1221/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email, password
-            })
-        }).then((t) => t.json())
+        const payload = {email, password};
+        const result = await apiCall('/api/login',payload) 
 
         console.log(result)
 

@@ -1,8 +1,10 @@
-export const IS_DEVELOPMENT = location.hostname === 'localhost';
+export const IS_DEVELOPMENT = window.location.hostname === 'localhost';
 export const IS_PRODUCTION = !IS_DEVELOPMENT;
-export const API_URL = IS_PRODUCTION ? '' : 'http://localhost:1221';
+export const API_URL = `http://${window.location.hostname}:1221`;
 
 export async function apiCall(path: string, payload: { [key: string]: any} ) {
+    console.log(API_URL)
+    console.log(payload)
     const res = await fetch(`${API_URL}${path}`, {
         method: 'POST',
         headers: {
